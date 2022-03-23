@@ -8,7 +8,9 @@ you can download this repository by fallowing bellow steps
 
 cd catkin_ws/src git clone https://github.com/Aravind8967/robot_b_config.git 
 
-cd .. catkin_make
+cd .. 
+
+catkin_make
 
 ------------ To see the robot command is ----------------------
 
@@ -32,6 +34,10 @@ rostopic list
 
 you can check this by publishing
 
---------------- for imu ----- rostopic echo /imu
+--------------- for imu ----- 
 
----------- for odom ----------- rostopic echo /odom
+rostopic echo /imu
+
+---------- for odom ----------- 
+
+rostopic echo /odom
