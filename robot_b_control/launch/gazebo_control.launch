@@ -1,0 +1,15 @@
+<launch>
+
+  <!-- this opens gazebo and put the robot in gazebo -->
+  <include file="$(find robot_b_description)/launch/gazebo.launch" />
+
+    <!-- Load joint controller configurations to parameter server -->
+    <!-- think of parameter server as global variables which you can  -->
+    <!-- access using the command 'rosparam list' in the terminal -->
+    <rosparam file="$(find robot_b_control)/config/robot_b_controller.yaml" command="load" />
+
+    <!-- Load the controller from parameter server to simulation -->
+    <node name="robot_b_controller_spawner" pkg="controller_manager" type="spawner" args="joint_state_controller arm_controller" respawn="false" output="screen"/>
+
+
+</launch>

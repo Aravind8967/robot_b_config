@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="robot_b">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <joint name="LB1_joint"/>
+        <joint name="LBW_joint"/>
+        <joint name="LF1_joint"/>
+        <joint name="LFW_joint"/>
+        <joint name="RB1_joint"/>
+        <joint name="RBW_joint"/>
+        <joint name="RF1_joint"/>
+        <joint name="RFW_joint"/>
+        <joint name="cam_x_j"/>
+        <joint name="cam_y_j"/>
+        <joint name="camera_j"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="allzero" group="arm">
+        <joint name="LB1_joint" value="0"/>
+        <joint name="LBW_joint" value="0"/>
+        <joint name="LF1_joint" value="0"/>
+        <joint name="LFW_joint" value="0"/>
+        <joint name="RB1_joint" value="0"/>
+        <joint name="RBW_joint" value="0"/>
+        <joint name="RF1_joint" value="0"/>
+        <joint name="RFW_joint" value="0"/>
+        <joint name="cam_x_j" value="0"/>
+        <joint name="cam_y_j" value="0"/>
+    </group_state>
+    <group_state name="up" group="arm">
+        <joint name="LB1_joint" value="-1.3962"/>
+        <joint name="LBW_joint" value="0"/>
+        <joint name="LF1_joint" value="1.3962"/>
+        <joint name="LFW_joint" value="0"/>
+        <joint name="RB1_joint" value="1.3962"/>
+        <joint name="RBW_joint" value="0"/>
+        <joint name="RF1_joint" value="-1.3962"/>
+        <joint name="RFW_joint" value="0"/>
+        <joint name="cam_x_j" value="0"/>
+        <joint name="cam_y_j" value="0"/>
+    </group_state>
+    <group_state name="cam_right" group="arm">
+        <joint name="LB1_joint" value="-1.3962"/>
+        <joint name="LBW_joint" value="0"/>
+        <joint name="LF1_joint" value="1.3962"/>
+        <joint name="LFW_joint" value="0"/>
+        <joint name="RB1_joint" value="1.3962"/>
+        <joint name="RBW_joint" value="0"/>
+        <joint name="RF1_joint" value="-1.3962"/>
+        <joint name="RFW_joint" value="0"/>
+        <joint name="cam_x_j" value="-1.7"/>
+        <joint name="cam_y_j" value="-0.5833"/>
+    </group_state>
+    <group_state name="cam_left" group="arm">
+        <joint name="LB1_joint" value="-1.3962"/>
+        <joint name="LBW_joint" value="0"/>
+        <joint name="LF1_joint" value="1.3962"/>
+        <joint name="LFW_joint" value="0"/>
+        <joint name="RB1_joint" value="1.3962"/>
+        <joint name="RBW_joint" value="0"/>
+        <joint name="RF1_joint" value="-1.3962"/>
+        <joint name="RFW_joint" value="0"/>
+        <joint name="cam_x_j" value="1.7"/>
+        <joint name="cam_y_j" value="-0.5833"/>
+    </group_state>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="cam_x_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="cam_y_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="camera_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="imu_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="laser_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="left_b_l_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="left_b_w_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="left_f_l_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="right_b_l_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="right_f_l_1" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="ultra_1" reason="Adjacent"/>
+    <disable_collisions link1="cam_x_1" link2="cam_y_1" reason="Adjacent"/>
+    <disable_collisions link1="cam_x_1" link2="camera_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="imu_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="laser_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="left_b_l_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="left_b_w_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="cam_x_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="camera_1" reason="Adjacent"/>
+    <disable_collisions link1="cam_y_1" link2="imu_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="laser_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="left_b_l_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="left_b_w_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="cam_y_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="imu_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="laser_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="left_b_l_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="left_b_w_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="camera_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="laser_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="left_b_l_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="left_b_w_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="imu_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="left_b_l_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="left_b_w_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="laser_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="left_b_w_1" reason="Adjacent"/>
+    <disable_collisions link1="left_b_l_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="left_b_l_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="left_f_l_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="left_f_w_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="left_b_w_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="left_f_l_1" link2="left_f_w_1" reason="Adjacent"/>
+    <disable_collisions link1="left_f_l_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="left_f_l_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="left_f_l_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="left_f_l_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="left_f_l_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="left_f_w_1" link2="right_b_l_1" reason="Never"/>
+    <disable_collisions link1="left_f_w_1" link2="right_b_w_1" reason="Never"/>
+    <disable_collisions link1="left_f_w_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="left_f_w_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="left_f_w_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="right_b_l_1" link2="right_b_w_1" reason="Adjacent"/>
+    <disable_collisions link1="right_b_l_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="right_b_l_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="right_b_l_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="right_b_w_1" link2="right_f_l_1" reason="Never"/>
+    <disable_collisions link1="right_b_w_1" link2="right_f_w_1" reason="Never"/>
+    <disable_collisions link1="right_b_w_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="right_f_l_1" link2="right_f_w_1" reason="Adjacent"/>
+    <disable_collisions link1="right_f_l_1" link2="ultra_1" reason="Never"/>
+    <disable_collisions link1="right_f_w_1" link2="ultra_1" reason="Never"/>
+</robot>

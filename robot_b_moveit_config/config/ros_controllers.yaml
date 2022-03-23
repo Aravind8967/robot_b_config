@@ -1,0 +1,16 @@
+controller_list:
+  - name: "arm_controller"
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - LB1_joint
+      - LBW_joint
+      - LF1_joint
+      - LFW_joint
+      - RB1_joint
+      - RBW_joint
+      - RF1_joint
+      - RFW_joint
+      - cam_x_j
+      - cam_y_j
